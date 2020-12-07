@@ -36,7 +36,7 @@ class NaiveBayes:
         for entry in self.training_set:
             entry_text = entry[1].split()
             for word in entry_text:
-                word = word.strip(".,?!@#:\"“-—'()").lower()
+                word = word.lower()
                 if (word, "factual") in self.wordClassCount.keys() or (word, "nonFactual") in self.wordClassCount.keys():
                     if entry[2] == "yes":
                         self.numFactualWords += 1
@@ -102,7 +102,7 @@ class NaiveBayes:
             factualScore = math.log10(self.probFactual)
             nonFactualScore = math.log10(self.probNonFactual)
             for word in entry[1].split():
-                word = word.strip(".,?!@#:\"“-—'()").lower()
+                word = word.lower()
                 if word not in self.vocabulary:
                     continue
                 factualScore = factualScore + math.log10(self.conditionals[word, "factual"])
