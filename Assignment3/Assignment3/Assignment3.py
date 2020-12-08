@@ -158,5 +158,5 @@ class NaiveBayes:
 training_data = list(csv.reader(open('Resources/covid_training.tsv', encoding="utf-8"), delimiter='\t'))[1:]
 test_data = list(csv.reader(open('Resources/covid_test_public.tsv', encoding="utf-8"), delimiter='\t'))
 
-filteredNB = NaiveBayes(training_data, test_data, True)
 unfilteredNB = NaiveBayes(training_data, test_data)
+filteredNB = NaiveBayes(training_data, test_data, True)
