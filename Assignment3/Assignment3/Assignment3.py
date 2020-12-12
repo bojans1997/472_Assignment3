@@ -53,7 +53,6 @@ class NaiveBayes:
                         self.numNonFactualWords += 1
                         self.wordClassCount[(word, "factual")] = 0
                         self.wordClassCount[(word, "nonFactual")] = 1
-
         # filter out words that only appear once if filtered is set to True
         words_to_remove = []
         if self.filtered:
@@ -61,9 +60,9 @@ class NaiveBayes:
                 if self.wordClassCount[(word[0], "factual")] + self.wordClassCount[(word[0], "nonFactual")] < 2:
                     words_to_remove.append(word)
             for word in words_to_remove:
-                if word[1] == "factual":
+                if word[1] == "factual" and self.wordClassCount[word] >= 1:
                     self.numFactualWords -= 1
-                else:
+                elif word[1] == "nonFactual" and self.wordClassCount[word] >= 1:
                     self.numNonFactualWords -= 1
                 del self.wordClassCount[word]
         self.vocabularySize = len(self.wordClassCount) / 2
