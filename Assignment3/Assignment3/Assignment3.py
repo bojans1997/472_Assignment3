@@ -140,12 +140,24 @@ class NaiveBayes:
         f.close()
         
         accuracy = (len(self.test_set) - incorrectPredictions) / len(self.test_set)
-        yesPrecision = (predictedFactualCount - incorrectFactualPredictions) / predictedFactualCount
-        noPrecision = (predictedNonFactualCount - incorrectNonFactualPredictions) / predictedNonFactualCount
-        yesRecall = (actualFactualCount - incorrectNonFactualPredictions) / actualFactualCount
-        noRecall = (actualNonFactualCount - incorrectFactualPredictions) / actualNonFactualCount
-        yesF1 = (2 * yesPrecision * yesRecall) / (yesPrecision + yesRecall)
-        noF1 = (2 * noPrecision * noRecall) / (noPrecision + noRecall)
+        yesPrecision = 0
+        noPrecision = 0
+        noRecall = 0
+        yesRecall = 0
+        yesF1 = 0
+        noF1 = 0
+        if predictedFactualCount != 0:
+            yesPrecision = (predictedFactualCount - incorrectFactualPredictions) / predictedFactualCount
+        if predictedNonFactualCount != 0:
+            noPrecision = (predictedNonFactualCount - incorrectNonFactualPredictions) / predictedNonFactualCount
+        if actualFactualCount != 0:
+            yesRecall = (actualFactualCount - incorrectNonFactualPredictions) / actualFactualCount
+        if actualNonFactualCount != 0:
+            noRecall = (actualNonFactualCount - incorrectFactualPredictions) / actualNonFactualCount
+        if yesPrecision != 0 and yesRecall != 0:
+            yesF1 = (2 * yesPrecision * yesRecall) / (yesPrecision + yesRecall)
+        if noPrecision != 0 and noRecall != 0:
+            noF1 = (2 * noPrecision * noRecall) / (noPrecision + noRecall)
 
         f = open(self.evalFileName, "w")
         f.write(str(accuracy) + "\n")
