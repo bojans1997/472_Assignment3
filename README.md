@@ -1,9 +1,6 @@
-# 472_Assignment3
-https://github.com/bojans1997/472_Assignment3
+A Naive-Bayes classifier that determines whether a tweet contains factual information, using manually created data to train itself.
 
 Bojan Srbinoski - 40058428
-
-A Naive-Bayes classifier that determines whether a tweet contains factual information, using manually created data to train itself.
 
 -----------
 HOW TO RUN
